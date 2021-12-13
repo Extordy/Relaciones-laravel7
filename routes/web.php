@@ -25,11 +25,11 @@ Route::get('/profile/{id}', function ($id){
     $user = App\User::find($id);
     //traer comntarios de post ed usuarui
     $posts  = $user->posts()
-		
+        //with('category','image','tags') 
 		->withCount('comments')->get();
 
         $videos = $user->videos()
-		
+        //->with('category','image','tags')
 		->withCount('comments')->get();
 
     //vistra pasando usuario
@@ -40,3 +40,24 @@ Route::get('/profile/{id}', function ($id){
     ]);
 
 })->name('profile');
+
+Route::get('/level/{id}', function ($id){
+    //buscar level por id
+    $level = App\Level::find($id);
+    //traer comntarios de post ed usuarui
+    $posts  = $level->posts()
+        //->with('category','image','tags') 
+		->withCount('comments')->get();
+
+        $videos = $level->videos()
+        //->with('category','image','tags')
+		->withCount('comments')->get();
+
+    //vistra pasando usuario
+    return view('level',[
+        'level' => $level,
+        'posts' => $posts,
+        'videos' => $videos
+    ]);
+
+})->name('level');

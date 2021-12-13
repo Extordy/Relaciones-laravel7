@@ -4,42 +4,14 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ $user->name }}</title>
+        <title>Usuarios de {{ $level->name }}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
     <body>
         <div class="container">
             <div class="row">
-            	<div class="col-12 my-3 pt-3 shadow">
-                    <img src=" http://placeimg.com/90/90/any " class="float-left rounded-circle mr-2">
-            		<h1>{{ $user->name }}</h1>
-            		<h3>{{ $user->email }}</h3>
-            		<p>
-            			<strong>Instagram</strong>: {{ $user->profile->instagram }} <br>
-            			<strong>GitHub</strong>: {{ $user->profile->github }} <br>
-            			<strong>Web</strong>: {{ $user->profile->web }}
-            		</p>
-                    <p>
-                        <strong>País</strong>: {{ $user->location->country }} <br>
-                        <strong>Nivel</strong>: @if ($user->level) 
-                        <!-- direecion pasando el id de el level -->
-                            <a href="{{ route('level',$user->level->id) }}">
-                                {{ $user->level->name }}
-                            </a>
-                        @else
-                            ---
-                        @endif <br>
-                    </p>
-                    <hr>
-                    <p>
-                        <strong>Grupos</strong>:
-                        @forelse($user->groups as $group)
-                            <span class="badge badge-primary">{{ $group->name }}</span>
-                        @empty
-                            <em>No pertenece a algún grupo</em>
-                        @endforelse
-                    </p>
-
+            	    <div class="col-12 my-3 py-3 shadow">
+                        <h1>Contenido de usuario nivel {{ $level->name }}</h1>
                     <hr>
                     
                     <h3>Posts</h3>
@@ -75,7 +47,9 @@
                         @endforeach
                     </div>
 
-                    <h3>Videos</h3>
+                    <h1>Contenido de video usuario usuario nivel {{ $level->name }}</h1>
+                    <hr>
+                    
 
                     <div class="row">
                         @foreach($videos as $video)
